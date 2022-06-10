@@ -49,7 +49,6 @@ const createScoreboard = () => {
 const showScoreboard = (your, random, round) => {
     if (document.querySelector('.scoreboard')) {
         document.querySelector('.scoreboard').style.display = "flex"
-        
     } else {
         createScoreboard()
     }
@@ -115,57 +114,52 @@ const showScoreboard = (your, random, round) => {
     board.append(div)
     document.querySelector('.scoreboard-field-results').scrollTo(
         { top: document.querySelector('.scoreboard-field-results').scrollHeight, behavior: 'smooth' });
-      
     if (win === 3) {
-        
-        endPage(true)
+        console.log('win')
+        endPage(state = true)
     } 
-    if (round === 10) {
-        
-        endPage(false)
+    if (round === 10 & win <= 2) {
+        console.log('lose')
+        endPage(state = false)
     }   
 }
 
 const endPage = (state) => {
     document.querySelector('.scoreboard-field-button').style.display = "none";
     document.querySelector('.scoreboard-field-h2').classList.add("padding-on-board")
-    document.querySelector('.scoreboard-field').classList.add("display-flex-board")
+    document.querySelector('.scoreboard-field').classList.add("display-flex-board")  
     if (document.querySelector('.end')) {
-        document.querySelector('.end').style.display = "flex"
-    } else {
-        const main = document.querySelector('.main')
-        const div = document.createElement('div');
-        div.className = 'end';
-        
-        
-        
-        if (state === true) {
-            div.innerHTML = `
-            <h1 class="end-h2">Congats!!!</h1>
-            <p class="end-p">You Won</p>
-            <button class="end-button">Play Again!</button>`;
-            
-        } 
-        if (state === false) {
-            div.innerHTML = `
-            <h1 class="end-h2">I'm sorry</h1>
-            <p class="end-p">You Lost</p>
-            <button class="end-button">Play Again!</button>`;
-        }
-        main.appendChild(div);
+        document.querySelector('.end').remove()
+    } 
+    const main = document.querySelector('.main')
+    const div = document.createElement('div');
+    div.className = 'end';
+    div.innerHTML = `
+        <h1 class="end-h2"></h1>
+        <p class="end-p"></p>
+        <button class="end-button">Play Again!</button>`;
+    main.appendChild(div);
+    if (state === true) {
+        document.querySelector('.end-h2').innerHTML = 'Congrats!!!'
+        document.querySelector('.end-p').innerHTML = 'You Won'
+    } 
+    if (state === false) {
+        document.querySelector('.end-h2').innerHTML = "I'm sorry"
+        document.querySelector('.end-p').innerHTML = 'You Lost'
     }
-    
+        
     document.querySelector('.end-button').addEventListener('click', () => {
         document.querySelector('.scoreboard-field-results').innerHTML = "";
         document.querySelector('.choise').style.display = "flex";
         document.querySelector('.scoreboard-field-button').style.display = "block";
         document.querySelector('.end').style.display = "none";
         document.querySelector('.scoreboard').style.display = "none";
-        document.querySelector('.scoreboard-field').classList.remove("display-flex-board")
-        document.querySelector('.scoreboard-field-h2').classList.remove("padding-on-board")
+        document.querySelector('.scoreboard-field').classList.remove("display-flex-board");
+        document.querySelector('.scoreboard-field-h2').classList.remove("padding-on-board");
         win = 0
         round = 0
     })
+    
 }
 
 const chooseCard = () =>{
