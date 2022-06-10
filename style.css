@@ -277,22 +277,21 @@ html, body {
   }
   
   .scoreboard-field .scoreboard-field-button {
-    width: 150px;
-    height: 60px;
+    width: 27vh;
+    height: 10vh;
     background-color: #020018;
     color: #ececec;
-    font-size: 1.5em;
+    font-size: 4vh;
     border: none;
     font-weight: 900;
-    border-radius: 20px;
+    border-radius: 4vh;
     -webkit-transition: 0.1s;
     transition: 0.1s;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 4vh;
   }
   
   .scoreboard-field .scoreboard-field-button:active {
-    font-size: 1em;
+    font-size: 2.5vh;
     color: #f95959;
   }
   
